@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: 168 85 247;
+    --brand-dark: 124 58 237;
+    --gold: 251 191 36;
+    --surface: 24 24 27;
+    --surface-light: 39 39 42;
+    --border: 63 63 70;
+    --text: 250 250 250;
+    --text-muted: 161 161 170;
+  }
+
+  * { -webkit-font-smoothing: antialiased; }
+
+  html { scroll-behavior: smooth; }
+
+  ::selection {
+    background: rgba(168, 85, 247, 0.3);
+    color: #fafafa;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/[0.06];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-500
+           text-white font-medium rounded-xl transition-all duration-200
+           hover:shadow-glow active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    /* Prevent browser autofill from overriding button color */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15
+           text-white font-medium rounded-xl border border-white/10 transition-all duration-200
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white
+           hover:bg-white/5 rounded-lg transition-all duration-150;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white
+           placeholder:text-zinc-500 focus:outline-none focus:border-brand-500/60
+           focus:ring-1 focus:ring-brand-500/30 transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-300 hover:border-zinc-700 hover:shadow-card-hover
+           hover:-translate-y-1;
+  }
+
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-bold tracking-tight;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-400 to-purple-300 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 to-amber-300 bg-clip-text text-transparent;
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0
+           before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent
+           before:animate-shimmer;
+  }
+
+  .panel {
+    @apply bg-zinc-950 border-r border-zinc-800/60;
+  }
+
+  .swatch {
+    @apply w-8 h-8 rounded-full cursor-pointer border-2 transition-all duration-150
+           hover:scale-110 active:scale-95;
+  }
+
+  .swatch-selected {
+    @apply ring-2 ring-offset-2 ring-offset-zinc-900 ring-brand-500 scale-110;
+  }
+
+  .tool-btn {
+    @apply flex flex-col items-center gap-1 p-2.5 rounded-xl transition-all duration-150
+           text-zinc-400 hover:text-white hover:bg-white/5 cursor-pointer select-none;
+  }
+
+  .tool-btn-active {
+    @apply bg-brand-600/20 text-brand-400 border border-brand-500/30;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+  .text-balance { text-wrap: balance; }
+
+  .perspective-1000 { perspective: 1000px; }
+  .transform-3d { transform-style: preserve-3d; }
+}
+
+/* ── Direct overrides – beat any extension or browser autofill ───────────── */
+.btn-primary {
+  background-color: #9333ea !important;
+  color: #ffffff !important;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #a855f7 !important;
+}
+
+/* Three.js canvas */
+canvas { display: block; touch-action: none; }
+
+/* Custom range input */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #3f3f46;
+  border-radius: 2px;
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #a855f7;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+}
